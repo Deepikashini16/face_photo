@@ -93,7 +93,7 @@ def classify_face(im,String_names):
             name = known_face_names[best_match_index]
             #print(name)
 
-        face_names.append(name)
+#         face_names.append(name)
 
         """for (top, right, bottom, left), name in zip(face_locations, face_names):
             # Draw a box around the face
