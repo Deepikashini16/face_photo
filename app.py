@@ -105,9 +105,9 @@ def classify_face(im,String_names):
             cv2.putText(img, name, (left -20, bottom + 15), font, 1.0, (255, 255, 255), 2)
 
         if handles != "":
-#             if last_res == "Unknown":
-#                 last_res = ""
-            last_res += Stringname   
+            if last_res == "Unknown":
+                last_res = ""
+            last_res += handles   
     return last_res
 
 if __name__ == '__main__':
