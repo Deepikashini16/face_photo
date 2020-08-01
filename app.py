@@ -81,10 +81,10 @@ def classify_face(im,String_names):
         # See if the face is a match for the known face(s)
         matches = face_recognition.compare_faces(faces_encoded, face_encoding)
 
-        String_name = ""
+        handles = ""
         for i in range(len(matches)):
             if matches[i]:
-                String_names += known_face_names[i]+" "
+                handles += known_face_names[i]+" "
 
         # use the known face with the smallest distance to the new face
         face_distances = face_recognition.face_distance(faces_encoded, face_encoding)
@@ -104,9 +104,9 @@ def classify_face(im,String_names):
             font = cv2.FONT_HERSHEY_DUPLEX
             cv2.putText(img, name, (left -20, bottom + 15), font, 1.0, (255, 255, 255), 2)
 
-        if String_name != "":
-            if last_res == "Unknown":
-                last_res = ""
+        if handles != "":
+#             if last_res == "Unknown":
+#                 last_res = ""
             last_res += Stringname   
     return last_res
 
