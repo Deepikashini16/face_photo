@@ -5,6 +5,8 @@ import face_recognition
 import numpy as np
 from time import sleep
 
+app = Flask(__name__)
+
 @app.route('/', methods=['POST'])
 def home():
     img_string = request.form['username']
