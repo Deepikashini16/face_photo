@@ -5,6 +5,16 @@ import face_recognition
 import numpy as np
 from time import sleep
 
+@app.route('/', methods=['POST'])
+def home():
+    img_string = request.form['username']
+    imgdata = base64.b64decode(img_string)
+    filename = 'some_image.jpg'  # I assume you have a way of picking unique filenames
+    with open(filename, 'wb') as f:
+        f.write(imgdata)
+    names = classify_face("some_image.jpg","")
+    return names
+
 
 def get_encoded_faces():
     """
@@ -64,10 +74,13 @@ def classify_face(im,String_names):
         matches = face_recognition.compare_faces(faces_encoded, face_encoding)
 
 
-        name = "Unknown"
-
+        String_names = "Unknown"
+        first = True
         for i in range(len(matches)):
             if matches[i]:
+                if first:
+                    first = False
+                    String_name = ""
                 String_names+=known_face_names[i]
 
         # use the known face with the smallest distance to the new face
@@ -90,7 +103,5 @@ def classify_face(im,String_names):
 
     return String_names
 
-
-String_names=""
-a=classify_face("nive_tan.jpg",String_names)
-print(a)
+if __name__ == '__main__':
+    app.run(debug=True)
