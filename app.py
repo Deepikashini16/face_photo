@@ -1,9 +1,14 @@
+from flask import Flask, render_template, url_for, request
+import requests
+import re
 import face_recognition as fr
 import os
-import cv2
 import face_recognition
 import numpy as np
 from time import sleep
+import cv2
+import base64
+from base64 import decodestring
 
 app = Flask(__name__)
 
